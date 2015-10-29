@@ -1,0 +1,18 @@
+{application, mykv,
+ [{description, "Key/Value store for learning purpose"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {mykv_app, []}},
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[]},
+  {modules, []},
+  {contributors, []},
+  {licenses, []},
+  {links, []},
+  {start_phases, [
+      {start_datastore, []}
+    ]}
+ ]}.
