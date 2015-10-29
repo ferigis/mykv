@@ -81,11 +81,11 @@ delete_bucket(Bucket) ->
 join(Node) ->
   mykv_store:join(Node).
 
--spec leave() ->
+-spec leave() -> ok.
 leave() ->
   mykv_store:leave().
 
-get_cluster_nodes() -> ok.
+get_cluster_nodes() -> 
   case mykv_store:get_nodes() of
     [] -> no_cluster;
     Nodes -> Nodes 
@@ -117,7 +117,6 @@ setup_cluster(NodeNames) when is_list(NodeNames) ->
   F2 = fun(Node) ->
       rpc:call(Node, ?MODULE, join, [node()])
   end,
-  {ok, HostName} = inet:gethostname(),
   lists:map(F, NodeNames),
   lists:map(F2, NodeNames),
   ok.
